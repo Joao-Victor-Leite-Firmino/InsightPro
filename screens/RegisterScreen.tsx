@@ -1,17 +1,16 @@
-// LoginScreen.tsx
 import React, { useState, useContext } from 'react';
 import { View, TextInput, Button, Text } from 'react-native';
 import { GlobalContext } from '../hooks/EstadoGlobal';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types/types';
 
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'LoginScreen'>;
+type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamList, 'RegisterScreen'>;
 
 interface Props {
-  navigation: LoginScreenNavigationProp;
+  navigation: RegisterScreenNavigationProp;
 }
 
-const LoginScreen: React.FC<Props> = ({ navigation }) => {
+const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   const context = useContext(GlobalContext);
 
   if (!context) {
@@ -21,8 +20,11 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const { setUser } = context;
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  const handleRegister = () => {
+    // Aqui você pode adicionar a lógica de registro, como chamadas de API.
     setUser({ name, company });
     navigation.navigate('HomeScreen');
   };
@@ -41,10 +43,24 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         onChangeText={setCompany}
         style={{ borderWidth: 1, marginBottom: 16, padding: 8 }}
       />
-      <Button title="Login" onPress={handleLogin} />
-      <Button title="Cadastrar" onPress={() => navigation.navigate('RegisterScreen')} />
+      <TextInput
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        style={{ borderWidth: 1, marginBottom: 16, padding: 8 }}
+      />
+      <TextInput
+        placeholder="Senha"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+        style={{ borderWidth: 1, marginBottom: 16, padding: 8 }}
+      />
+      <Button title="Cadastrar" onPress={handleRegister} />
+      <Button title="Voltar para Login" onPress={() => navigation.navigate('LoginScreen')} />
     </View>
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;
