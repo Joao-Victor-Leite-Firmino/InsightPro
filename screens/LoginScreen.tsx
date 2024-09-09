@@ -1,50 +1,48 @@
-// LoginScreen.tsx
-import React, { useState, useContext } from 'react';
-import { View, TextInput, Button, Text } from 'react-native';
-import { GlobalContext } from '../hooks/EstadoGlobal';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types/types';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'LoginScreen'>;
-
-interface Props {
-  navigation: LoginScreenNavigationProp;
-}
-
-const LoginScreen: React.FC<Props> = ({ navigation }) => {
-  const context = useContext(GlobalContext);
-
-  if (!context) {
-    return <Text>Erro: Contexto não encontrado.</Text>;
-  }
-
-  const { setUser } = context;
-  const [name, setName] = useState('');
-  const [company, setCompany] = useState('');
+const LoginScreen: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const handleLogin = () => {
-    setUser({ name, company });
-    navigation.navigate('HomeScreen');
+    // Lógica de login
+    console.log('Login:', email, password);
   };
 
   return (
-    <View style={{ padding: 16 }}>
-      <TextInput
-        placeholder="Nome"
-        value={name}
-        onChangeText={setName}
-        style={{ borderWidth: 1, marginBottom: 16, padding: 8 }}
+    <View style={styles.container}>
+      <TextInput 
+        style={styles.input}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
       />
-      <TextInput
-        placeholder="Empresa"
-        value={company}
-        onChangeText={setCompany}
-        style={{ borderWidth: 1, marginBottom: 16, padding: 8 }}
+      <TextInput 
+        style={styles.input}
+        placeholder="Senha"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
       />
       <Button title="Login" onPress={handleLogin} />
-      <Button title="Cadastrar" onPress={() => navigation.navigate('RegisterScreen')} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 16,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 12,
+    paddingHorizontal: 10,
+  },
+});
 
 export default LoginScreen;
