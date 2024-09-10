@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
-import { View, TextInput, Button, Text } from 'react-native';
-import { GlobalContext } from '../hooks/EstadoGlobal';
 import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useContext, useState } from 'react';
+import { Button, Text, TextInput, View } from 'react-native';
+import { GlobalContext } from '../hooks/EstadoGlobal'; // Ajuste o caminho conforme necessário
 import { RootStackParamList } from '../types/types';
 
 type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamList, 'RegisterScreen'>;

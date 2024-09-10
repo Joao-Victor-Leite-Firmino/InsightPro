@@ -1,67 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
-import { RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { useRoute } from '@react-navigation/native';
+import React, { useContext, useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
+import { GlobalContext } from '../hooks/EstadoGlobal';
 
-type RootStackParamList = {
-  ProductDetails: { id: string };
-  Login: undefined;
-};
+// Defina as interfaces para garantir consistência
+interface Comment {
+  id: number;
+  text: string;
+}
 
-type ProductDetailsProps = {
-  route: RouteProp<RootStackParamList, 'ProductDetails'>;
-  navigation: StackNavigationProp<RootStackParamList, 'ProductDetails'>;
-};
-
-type Product = {
+interface Product {
+  id: string;
   name: string;
-  average_rating: number;
-  comments: { id: number; text: string }[];
-};
+  average_rating: string; // Certifique-se de que o tipo corresponda ao contexto global
+  comments: Comment[];
+}
 
-const ProductDetails = ({ route, navigation }: ProductDetailsProps) => {
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+const ProductDetail = () => {
+  const context = useContext(GlobalContext);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const route = useRoute();
+  const { productId } = route.params as { productId: string };
+
+  // Verifique se o contexto não é undefined
+  if (!context) {
+    return (
+      <View>
+        <Text>Error: Global context is undefined.</Text>
+      </View>
+    );
+  }
+
+  const { products } = context;
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await fetch(`https://api.example.com/product/${route.params.id}`);
-        const data = await response.json();
-        setProduct(data);
-      } catch (err) {
-        setError('Erro ao buscar dados do produto');
-      } finally {
-        setLoading(false);
+    if (products && productId) {
+      const product = products.find((p) => p.id === productId);
+      if (product) {
+        setSelectedProduct(product);
       }
-    };
-    fetchProduct();
-  }, [route.params.id]);
+    }
+  }, [products, productId]);
 
-  if (loading) {
-    return <ActivityIndicator size="large" />;
-  }
-
-  if (error) {
-    return <Text>{error}</Text>;
-  }
-
-  if (!product) {
-    return <Text>Produto não encontrado</Text>;
+  if (!selectedProduct) {
+    return (
+      <View>
+        <Text>Product not found</Text>
+      </View>
+    );
   }
 
   return (
     <View>
-      <Text>{product.name}</Text>
-      <Text>Avaliação média: {product.average_rating}</Text>
-      <View>
-        {product.comments.map((comment) => (
-          <Text key={comment.id}>{comment.text}</Text>
-        ))}
-      </View>
+      <Text>Product Name: {selectedProduct.name}</Text>
+      <Text>Average Rating: {selectedProduct.average_rating}</Text>
+      <Text>Comments:</Text>
+      {selectedProduct.comments.map((comment) => (
+        <View key={comment.id}>
+          <Text>{comment.text}</Text>
+        </View>
+      ))}
     </View>
   );
 };
 
-export default ProductDetails;
+export default ProductDetail;

@@ -1,24 +1,40 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useContext, useState } from 'react';
+import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { AuthContext } from '../context/AuthContext';
+import { RootStackParamList } from '../types/types';
 
-const LoginScreen: React.FC = () => {
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'LoginScreen'>;
+
+interface Props {
+  navigation: LoginScreenNavigationProp;
+}
+
+const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    return <Text>Erro: Contexto não encontrado</Text>;
+  }
+
+  const { login } = authContext;
+
   const handleLogin = () => {
-    // Lógica de login
-    console.log('Login:', email, password);
+    login(email, password);
   };
 
   return (
     <View style={styles.container}>
-      <TextInput 
+      <TextInput
         style={styles.input}
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
       />
-      <TextInput 
+      <TextInput
         style={styles.input}
         placeholder="Senha"
         secureTextEntry
@@ -26,6 +42,12 @@ const LoginScreen: React.FC = () => {
         onChangeText={setPassword}
       />
       <Button title="Login" onPress={handleLogin} />
+      <TouchableOpacity
+        style={styles.registerButton}
+        onPress={() => navigation.navigate('RegisterScreen')}
+      >
+        <Text style={styles.registerButtonText}>Cadastrar novo usuário</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -42,6 +64,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 12,
     paddingHorizontal: 10,
+  },
+  registerButton: {
+    marginTop: 16,
+    padding: 10,
+    backgroundColor: '#007bff',
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+  registerButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
 

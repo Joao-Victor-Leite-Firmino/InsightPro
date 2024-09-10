@@ -1,28 +1,22 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ProductDetails from '../screens/ProductDetail';
-import Login from '../screens/LoginScreen';
-import { AuthProvider } from '../context/AuthContext';
+import React from 'react';
+import { GlobalProvider } from '../hooks/EstadoGlobal'; // Ajuste o caminho conforme necessário
+import HomeScreen from '../screens/HomeScreen';
+import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <AuthProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="ProductDetails" component={ProductDetails} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </AuthProvider>
+    <GlobalProvider>
+      <Stack.Navigator initialRouteName="LoginScreen">
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      </Stack.Navigator>
+    </GlobalProvider>
   );
 };
 
 export default App;
-
-
-
-
-

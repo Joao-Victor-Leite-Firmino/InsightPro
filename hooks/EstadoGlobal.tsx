@@ -1,11 +1,17 @@
-import React, { createContext, useState, ReactNode } from 'react';
+import React, { ReactNode, createContext, useState } from 'react';
 
-// Define a estrutura dos produtos, incluindo 'comments'
+// Define a estrutura do comentário
+interface Comment {
+  id: number;
+  text: string;
+}
+
+// Define a estrutura dos produtos
 interface Product {
   id: string;
   name: string;
-  average_rating: string;
-  comments: string[]; // Inclui a propriedade 'comments'
+  average_rating: string; // Mantém o tipo como string para consistência
+  comments: Comment[]; // Altere para Comment[]
 }
 
 // Define a estrutura do contexto global
@@ -28,6 +34,3 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     </GlobalContext.Provider>
   );
 };
-
-
-
