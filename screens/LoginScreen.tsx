@@ -28,11 +28,16 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>InsightPro</Text>
+      <Text style={styles.subtitle}>Bem vindo de volta!</Text>
+
       <TextInput
         style={styles.input}
-        placeholder="Email"
+        placeholder="E-mail"
         value={email}
         onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
       />
       <TextInput
         style={styles.input}
@@ -41,12 +46,19 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         value={password}
         onChangeText={setPassword}
       />
-      <Button title="Login" onPress={handleLogin} />
-      <TouchableOpacity
-        style={styles.registerButton}
-        onPress={() => navigation.navigate('RegisterScreen')}
-      >
-        <Text style={styles.registerButtonText}>Cadastrar novo usuário</Text>
+
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+        <Text style={styles.loginButtonText}>Entrar</Text>
+      </TouchableOpacity>
+
+      {/* Link para recuperação de senha */}
+      <TouchableOpacity onPress={() => navigation.navigate('ForgotPasswordScreen')}>
+        <Text style={styles.forgotPasswordText}>Esqueci minha senha</Text>
+      </TouchableOpacity>
+
+      {/* Link para cadastro */}
+      <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
+        <Text style={styles.registerText}>Ainda não tem uma conta? <Text style={styles.registerLinkText}>Crie uma aqui</Text></Text>
       </TouchableOpacity>
     </View>
   );
@@ -56,25 +68,53 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
     padding: 16,
+    backgroundColor: '#fff',
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 24,
+    marginBottom: 24,
   },
   input: {
+    width: '100%',
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
     marginBottom: 12,
     paddingHorizontal: 10,
-  },
-  registerButton: {
-    marginTop: 16,
-    padding: 10,
-    backgroundColor: '#007bff',
-    alignItems: 'center',
     borderRadius: 5,
   },
-  registerButtonText: {
+  loginButton: {
+    width: '100%',
+    backgroundColor: '#00aaff',
+    padding: 12,
+    alignItems: 'center',
+    borderRadius: 5,
+    marginTop: 16,
+  },
+  loginButtonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  forgotPasswordText: {
+    color: '#007bff',
+    marginTop: 12,
+    textDecorationLine: 'underline',
+  },
+  registerText: {
+    color: '#000',
+    marginTop: 16,
+  },
+  registerLinkText: {
+    color: '#007bff',
+    fontWeight: 'bold',
   },
 });
 

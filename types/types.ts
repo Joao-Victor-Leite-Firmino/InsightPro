@@ -4,4 +4,5 @@ export type RootStackParamList = {
   RegisterScreen: undefined;  // Adicione a rota de cadastro
   HomeScreen: undefined;
   ProductDetailScreen: { productId: string };
+  ForgotPasswordScreen: undefined;
 };
