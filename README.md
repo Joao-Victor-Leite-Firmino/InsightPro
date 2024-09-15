@@ -1,50 +1,9 @@
-# Welcome to your Expo app 👋
+Grupo:
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Get started
+O InsightPro é um inovador aplicativo desenvolvido para coletar e analisar avaliações e comentários de produtos utilizando técnicas avançadas de web scraping e inteligência artificial generativa. O objetivo principal do InsightPro é fornecer aos usuários insights detalhados e valiosos com base no feedback real de consumidores, ajudando-os a tomar decisões mais informadas sobre suas compras.
 
-1. Install dependencies
+Como Funciona
+Coleta de Dados: Utilizando técnicas de web scraping, o InsightPro extrai avaliações e comentários de diversos sites de e-commerce e plataformas de avaliação. Isso permite reunir um vasto conjunto de dados sobre a performance e a percepção dos produtos no mercado.
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Análise com IA Generativa: Após a coleta, os dados são processados e analisados com o auxílio de inteligência artificial generativa. O InsightPro utiliza algoritmos sofisticados para interpretar o feedback dos usuários, identificar padrões, extrair insights e gerar relatórios que destacam pontos fortes, áreas de melhoria e tendências emergentes.
