@@ -1,6 +1,6 @@
-import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext, useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View, StyleSheet, ActivityIndicator } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { AuthContext } from '../context/AuthContext';
 import { RootStackParamList } from '../types/types';
 
@@ -11,25 +11,33 @@ interface Props {
 }
 
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const { login } = useContext(AuthContext) || {};
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const authContext = useContext(AuthContext);
+  const handleLogin = async () => {
+    if (email === '' || password === '') {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
 
-  if (!authContext) {
-    return <Text>Erro: Contexto não encontrado</Text>;
-  }
+    setLoading(true);
 
-  const { login } = authContext;
-
-  const handleLogin = () => {
-    login(email, password);
+    try {
+      await login?.(email, password);
+      navigation.navigate('HomeScreen'); // Navegar para a tela principal
+    } catch (error) {
+      alert('Erro ao fazer login. Verifique suas credenciais.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>InsightPro</Text>
-      <Text style={styles.subtitle}>Bem vindo de volta!</Text>
+      <Text style={styles.subtitle}>Faça login</Text>
 
       <TextInput
         style={styles.input}
@@ -47,18 +55,22 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         onChangeText={setPassword}
       />
 
-      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.loginButtonText}>Entrar</Text>
-      </TouchableOpacity>
+      {loading ? (
+        <ActivityIndicator size="large" color="#00aaff" />
+      ) : (
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+          <Text style={styles.loginButtonText}>Login</Text>
+        </TouchableOpacity>
+      )}
 
       {/* Link para recuperação de senha */}
       <TouchableOpacity onPress={() => navigation.navigate('ForgotPasswordScreen')}>
-        <Text style={styles.forgotPasswordText}>Esqueci minha senha</Text>
+        <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
       </TouchableOpacity>
 
-      {/* Link para cadastro */}
+      {/* Link para registro */}
       <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
-        <Text style={styles.registerText}>Ainda não tem uma conta? <Text style={styles.registerLinkText}>Crie uma aqui</Text></Text>
+        <Text style={styles.registerText}>Não tem uma conta? Registre-se</Text>
       </TouchableOpacity>
     </View>
   );
@@ -105,16 +117,14 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     color: '#007bff',
+    fontSize: 16,
     marginTop: 12,
     textDecorationLine: 'underline',
   },
   registerText: {
-    color: '#000',
+    color: '#00aaff',
+    fontSize: 16,
     marginTop: 16,
-  },
-  registerLinkText: {
-    color: '#007bff',
-    fontWeight: 'bold',
   },
 });
 

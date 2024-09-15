@@ -1,67 +1,115 @@
-import { useRoute } from '@react-navigation/native';
-import React, { useContext, useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
-import { GlobalContext } from '../hooks/EstadoGlobal';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import axios from 'axios';
 
-// Defina as interfaces para garantir consistência
+type RootStackParamList = {
+  ProductDetail: { id: string };
+};
+
+type ProductDetailScreenRouteProp = RouteProp<RootStackParamList, 'ProductDetail'>;
+
+type ProductDetailProps = {
+  route: ProductDetailScreenRouteProp;
+  navigation: StackNavigationProp<RootStackParamList, 'ProductDetail'>;
+};
+
 interface Comment {
-  id: number;
+  id: string;
   text: string;
 }
 
 interface Product {
   id: string;
   name: string;
-  average_rating: string; // Certifique-se de que o tipo corresponda ao contexto global
+  average_rating: string;
   comments: Comment[];
 }
 
-const ProductDetail = () => {
-  const context = useContext(GlobalContext);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const route = useRoute();
-  const { productId } = route.params as { productId: string };
+const ProductDetail: React.FC<ProductDetailProps> = ({ route }) => {
+  const { id } = route.params;
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  // Verifique se o contexto não é undefined
-  if (!context) {
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/products/${id}`);
+        setProduct(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar detalhes do produto:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProductDetails();
+  }, [id]);
+
+  if (loading) {
     return (
-      <View>
-        <Text>Error: Global context is undefined.</Text>
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Carregando detalhes do produto...</Text>
       </View>
     );
   }
 
-  const { products } = context;
-
-  useEffect(() => {
-    if (products && productId) {
-      const product = products.find((p) => p.id === productId);
-      if (product) {
-        setSelectedProduct(product);
-      }
-    }
-  }, [products, productId]);
-
-  if (!selectedProduct) {
+  if (!product) {
     return (
-      <View>
-        <Text>Product not found</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>Produto não encontrado</Text>
       </View>
     );
   }
 
   return (
-    <View>
-      <Text>Product Name: {selectedProduct.name}</Text>
-      <Text>Average Rating: {selectedProduct.average_rating}</Text>
-      <Text>Comments:</Text>
-      {selectedProduct.comments.map((comment) => (
-        <View key={comment.id}>
+    <View style={styles.container}>
+      <Text style={styles.title}>{product.name}</Text>
+      <Text style={styles.text}>Nota média: {product.average_rating}</Text>
+
+      <Text style={styles.commentsTitle}>Comentários:</Text>
+      {product.comments.map((comment) => (
+        <View key={comment.id} style={styles.commentCard}>
           <Text>{comment.text}</Text>
         </View>
       ))}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: '#fff',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  text: {
+    fontSize: 18,
+    marginBottom: 16,
+  },
+  commentsTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  commentCard: {
+    backgroundColor: '#f0f0f0',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 8,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default ProductDetail;

@@ -1,7 +1,7 @@
-import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext, useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native';
-import { GlobalContext } from '../hooks/EstadoGlobal'; // Ajuste o caminho conforme necessário
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AuthContext } from '../context/AuthContext';
 import { RootStackParamList } from '../types/types';
 
 type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamList, 'RegisterScreen'>;
@@ -11,30 +11,24 @@ interface Props {
 }
 
 const RegisterScreen: React.FC<Props> = ({ navigation }) => {
-  const context = useContext(GlobalContext);
-
-  if (!context) {
-    return <Text>Erro: Contexto não encontrado.</Text>;
-  }
-
-  const { setUser } = context;
-  const [name, setName] = useState('');
-  const [company, setCompany] = useState('');
+  const { register } = useContext(AuthContext) || {};
   const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleRegister = () => {
-    if (password === confirmPassword) {
-      // Simula o registro do usuário (você pode adicionar uma chamada de API aqui)
-      // No registro bem-sucedido, armazenamos os dados no contexto
-      setUser({ name, company });
-      
-      // Redireciona para a tela de login após o registro bem-sucedido
+  const handleRegister = async () => {
+    if (password !== confirmPassword) {
+      alert('As senhas não coincidem!');
+      return;
+    }
+
+    try {
+      await register?.(email, password, company);
       alert('Conta criada com sucesso! Por favor, faça login.');
       navigation.navigate('LoginScreen');
-    } else {
-      alert('As senhas não coincidem!');
+    } catch (error) {
+      alert('Erro ao registrar. Tente novamente.');
     }
   };
 

@@ -1,6 +1,6 @@
-import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types/types';
 
 type ForgotPasswordScreenNavigationProp = StackNavigationProp<RootStackParamList, 'ForgotPasswordScreen'>;
@@ -14,7 +14,7 @@ const ForgotPasswordScreen: React.FC<Props> = ({ navigation }) => {
 
   const handlePasswordReset = () => {
     // Lógica para recuperação de senha (envio de e-mail de recuperação)
-    alert('Se o email estiver cadastrado, você receberá instruções para redefinir sua senha.');
+    alert('Se o e-mail estiver cadastrado, você receberá instruções para redefinir sua senha.');
     navigation.navigate('LoginScreen');
   };
 
