@@ -81,6 +81,7 @@ Além do InsightPro, a equipe desenvolveu uma solução em nuvem hospedada na Az
 ## Tecnologias Utilizadas
 
 - Web Scraping: Coleta automatizada de dados.
+- React Native: Desenvolvimento de aplicação mobile responsiva.
 - Inteligência Artificial Generativa: Processamento de dados e geração de insights.
 - Java: Desenvolvimento da API backend.
 - Thymeleaf & MVC: Interface de usuário interativa.
