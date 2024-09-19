@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 type RootStackParamList = {
   ProductDetail: { id: string };
@@ -25,6 +25,7 @@ interface Product {
   name: string;
   average_rating: string;
   comments: Comment[];
+  insights: string | null; // Insights também estão incluídos
 }
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ route }) => {
@@ -65,7 +66,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ route }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>{product.name}</Text>
       <Text style={styles.text}>Nota média: {product.average_rating}</Text>
 
@@ -75,7 +76,16 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ route }) => {
           <Text>{comment.text}</Text>
         </View>
       ))}
-    </View>
+
+      {product.insights && (
+        <>
+          <Text style={styles.insightsTitle}>Insights:</Text>
+          <View style={styles.insightCard}>
+            <Text>{product.insights}</Text>
+          </View>
+        </>
+      )}
+    </ScrollView>
   );
 };
 
@@ -101,6 +111,18 @@ const styles = StyleSheet.create({
   },
   commentCard: {
     backgroundColor: '#f0f0f0',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 8,
+  },
+  insightsTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  insightCard: {
+    backgroundColor: '#e0e0e0',
     padding: 12,
     borderRadius: 8,
     marginBottom: 8,

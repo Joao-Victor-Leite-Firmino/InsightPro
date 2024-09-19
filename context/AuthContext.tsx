@@ -1,6 +1,6 @@
-import React, { ReactNode, createContext, useState, useEffect } from 'react';
-import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import React, { ReactNode, createContext, useEffect, useState } from 'react';
 
 interface AuthContextType {
   user: { name: string; company: string } | null;
