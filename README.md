@@ -62,9 +62,9 @@ Camada de Domínio: Entidades e regras de negócio.
 Camada de Infraestrutura: Acesso ao banco de dados.
 Camada de Testes: xUnit para garantir a confiabilidade do sistema.
 Segurança e Integração
-Para garantir a segurança dos dados no MongoDB:
 
-## Autenticação e Autorização: RBAC e controle granular de permissões.
+## Para garantir a segurança dos dados no MongoDB:
+Autenticação e Autorização: RBAC e controle granular de permissões.
 Criptografia: Em repouso e em trânsito.
 Configurações de Rede: Acesso restrito a IPs confiáveis.
 Auditoria e Logs: Monitoramento de operações sensíveis e detecção de atividades suspeitas.
