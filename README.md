@@ -25,7 +25,8 @@ Na quarta sprint, os esforços focaram na automação do deploy e integração c
 Azure DevOps: Configuração de um pipeline no Azure Pipelines para build e publicação automatizada do aplicativo.
 Banco de Dados e App Service no Azure: Integração do banco de dados da Azure ao aplicativo Java, reforçando a persistência e conectividade.
 
-##Reflexão sobre o Projeto
+## Reflexão sobre o Projeto
+
 Ao longo do desenvolvimento, enfrentamos desafios técnicos na integração da aplicação com o pipeline e o banco de dados em nuvem. A automação de deploy aumentou a produtividade e consistência, consolidando conhecimentos em DevOps e desenvolvimento. Este projeto destacou a importância de uma comunicação clara e registros detalhados para facilitar futuras manutenções.
 
 ## Estrutura e Justificativa do Banco de Dados NoSQL
