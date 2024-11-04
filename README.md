@@ -1,100 +1,129 @@
-# InsightPro - Plataforma de Coleta e Análise de Avaliações com IA
+##InsightPro - Plataforma de Coleta e Análise de Avaliações com IA
 
-## Descrição Geral do Projeto
+##Descrição Geral do Projeto
 
-O InsightPro é uma plataforma revolucionária desenvolvida para coletar, analisar e gerar relatórios a partir de avaliações de produtos, utilizando técnicas avançadas de web scraping e inteligência artificial generativa. Nosso objetivo é fornecer insights profundos e acionáveis sobre produtos, com base em feedback real de consumidores, auxiliando empresas a aprimorarem suas ofertas e a tomarem decisões mais estratégicas.
+O InsightPro é uma plataforma inovadora para coleta, análise e geração de relatórios de avaliações de produtos utilizando técnicas avançadas de web scraping e inteligência artificial generativa. Desenvolvido para auxiliar empresas na obtenção de insights estratégicos, o InsightPro oferece uma visão profunda baseada no feedback de consumidores em plataformas de e-commerce.
 
-A crescente quantidade de dados gerada diariamente por consumidores em plataformas de e-commerce torna o uso de tecnologias inovadoras como o InsightPro crucial para empresas que buscam uma vantagem competitiva. O InsightPro centraliza e automatiza a coleta de feedback, garantindo que os dados sejam sempre atualizados e analisados com precisão. O sistema não apenas armazena, mas também analisa essas informações utilizando IA generativa e machine learning para sugerir melhorias e inovações no desenvolvimento de produtos.
+##Objetivos Principais
 
-### Principais Objetivos:
+Automatização da Coleta de Dados: Coleta automática de avaliações de e-commerce e YouTube.
+Geração de Insights: Identificação de padrões para otimização de produtos.
+Suporte à Decisão Estratégica: Baseado em dados reais processados por IA.
+Evolução do Desenvolvimento
+Sprint 3 - Base Estrutural e Persistência de Dados
 
-- Automatizar o processo de coleta de avaliações de diversas plataformas de e-commerce e fontes como YouTube.
-- Fornecer insights valiosos para otimizar produtos e melhorar a experiência do consumidor.
-- Apoiar a tomada de decisões estratégicas para empresas com base em dados reais, extraídos de forma automatizada e processados por inteligência artificial.
-  
-## Evolução do Desenvolvimento
+##Na terceira sprint, foi estabelecida uma base sólida para o InsightPro:
 
-O desenvolvimento do InsightPro foi executado em várias etapas, cada uma com avanços significativos:
+Documentação de Benefícios e Objetivos: Inovação acelerada, redução de custos, escalabilidade e fidelização de clientes.
+Desenho da Arquitetura: Definição de recursos, fluxos de dados e estrutura geral.
+Configuração do Banco de Dados no Azure: Criação do DDL das tabelas e estruturação da persistência de dados.
+Documentação em Vídeo: Produção de um vídeo demonstrando o processo de implementação, desde o clone do repositório Git até a publicação e persistência de dados.
 
-### 1. Concepção Teórica (Segunda Sprint)
+##Sprint 4 - Automação e Integração Contínua
+Na quarta sprint, os esforços focaram na automação do deploy e integração contínua:
 
-O projeto foi inicialmente planejado e concebido em um modelo teórico, com foco na definição da arquitetura do sistema e nas funcionalidades desejadas. Nessa fase, foram realizados os seguintes passos:
-- Definição dos fluxos de dados e dos componentes essenciais para o funcionamento do sistema.
-- Criação dos diagramas da arquitetura.
-- Especificação das funcionalidades de coleta de dados e análise de IA.
+Azure DevOps: Configuração de um pipeline no Azure Pipelines para build e publicação automatizada do aplicativo.
+Banco de Dados e App Service no Azure: Integração do banco de dados da Azure ao aplicativo Java, reforçando a persistência e conectividade.
 
-### 2. Construção e Integração (Terceira Sprint)
+##Reflexão sobre o Projeto
+Ao longo do desenvolvimento, enfrentamos desafios técnicos na integração da aplicação com o pipeline e o banco de dados em nuvem. A automação de deploy aumentou a produtividade e consistência, consolidando conhecimentos em DevOps e desenvolvimento. Este projeto destacou a importância de uma comunicação clara e registros detalhados para facilitar futuras manutenções.
 
-Na terceira sprint, o InsightPro evoluiu para uma fase prática, onde a plataforma começou a ser construída. Foram implementadas as funcionalidades essenciais, que incluíram:
-- Web Scraping Automatizado: O sistema foi configurado para coletar dados em tempo real de diversas plataformas de e-commerce e marketplaces, eliminando a necessidade de inserção manual de dados.
-- Análise de Dados com IA Generativa: Após a coleta, os dados passam por uma análise avançada utilizando inteligência artificial, que identifica padrões, tendências emergentes, pontos fortes e fracos dos produtos, gerando insights que são apresentados em relatórios detalhados.
-- Interface de Usuário (UI): Foi implementada uma interface mais amigável e intuitiva, utilizando o padrão *MVC (Model-View-Controller)* com Thymeleaf, facilitando a navegação e o gerenciamento das avaliações, produtos e clientes.
+##Estrutura e Justificativa do Banco de Dados NoSQL
+Banco de Dados: MongoDB
+Flexibilidade de Esquema: Adaptável a novos dados e tipos de feedback.
+Escalabilidade Horizontal: Sharding e suporte a grandes volumes de dados.
+JSON-like Documents: Estrutura ideal para dados complexos e aninhados.
+Coleções Principais
+Clientes: Dados pessoais, endereços e histórico de compras.
+Produtos: Descrição, preço, quantidade e avaliações.
+Avaliações: Comentários e notas dos clientes.
+Inteligência Artificial: Algoritmos, parâmetros e registros de desempenho.
+Sugestões: Relevância e aceitação de sugestões de produtos.
+Auditoria e Logs: Operações críticas e monitoramento de erros.
+Organização e Execução de Testes
+Gráficos de Estado: Mostra o progresso (Passou, Falhou, Em Andamento).
+Gráfico de ‘Executado por’: Monitoramento das contribuições da equipe.
+Documentação de Testes: Detalhamento das entradas, saídas esperadas e status.
+Agrupamento por Sprint: Rastreabilidade das funcionalidades entregues.
+Tecnologias Utilizadas
+Backend: Java, Spring Boot, ASP.NET Core, Spring Security.
+Frontend: Thymeleaf, Bootstrap, React Native (para a versão mobile).
+Banco de Dados: MongoDB, SQL Server.
+Inteligência Artificial: ML.NET, Gemini API.
+Cloud: Azure (Blob Storage, Cognitive Services, Machine Learning).
+Testes: xUnit para .NET.
+Mensageria: Kafka/RabbitMQ.
+Arquitetura do Sistema
+O InsightPro é desenvolvido com uma arquitetura de camadas, favorecendo modularidade e escalabilidade:
 
-## Estrutura do Backlog
+Camada de Apresentação: ASP.NET Core para endpoints da API.
+Camada de Aplicação: Lógica de negócios de alto nível.
+Camada de Domínio: Entidades e regras de negócio.
+Camada de Infraestrutura: Acesso ao banco de dados.
+Camada de Testes: xUnit para garantir a confiabilidade do sistema.
+Segurança e Integração
+Para garantir a segurança dos dados no MongoDB:
 
-O backlog de produto do InsightPro é organizado em três níveis hierárquicos:
+##Autenticação e Autorização: RBAC e controle granular de permissões.
+Criptografia: Em repouso e em trânsito.
+Configurações de Rede: Acesso restrito a IPs confiáveis.
+Auditoria e Logs: Monitoramento de operações sensíveis e detecção de atividades suspeitas.
+Endpoints Disponíveis
+Produtos
+GET /api/produtos: Retorna todos os produtos.
+GET /api/produtos/{id}: Retorna um produto específico.
+POST /api/produtos: Cria um novo produto.
+PUT /api/produtos/{id}: Atualiza um produto existente.
+DELETE /api/produtos/{id}: Remove um produto.
+Avaliações
+GET /api/avaliacoes: Retorna todas as avaliações.
+GET /api/avaliacoes/{id}: Retorna uma avaliação específica.
+POST /api/avaliacoes: Cria uma nova avaliação.
+PUT /api/avaliacoes/{id}: Atualiza uma avaliação existente.
+DELETE /api/avaliacoes/{id}: Remove uma avaliação.
+Clientes
+POST /clientes: Cria um novo cliente.
+GET /clientes: Busca todos os clientes.
+PUT /clientes/{id}: Atualiza um cliente.
+DELETE /clientes/{id}: Remove um cliente.
+Instalação e Execução da API
+Pré-requisitos
+Certifique-se de ter as seguintes ferramentas instaladas:
 
-1. *Épicos*: Representam os maiores objetivos do sistema. No caso do InsightPro, os épicos incluem:
-   - Captura e Armazenamento de Reclamações
-   - Armazenamento de Comentários e Reclamações
-   - Tratamento e Análise de Reclamações
-   - Comparação e Sugestão de Produtos
+.NET 6 SDK
+Visual Studio 2022 ou VS Code
+MongoDB
+Oracle
+Passo a Passo para Executar
+Clone o repositório:
+git clone https://github.com/seu-usuario/seu-repositorio.git
+Acesse o diretório da API:
+cd InsightPro.Produto.API
+Configure a string de conexão no arquivo appsettings.json:
+"ConnectionStrings": {
+  "DefaultConnection": "Server=SEU_SERVIDOR;Database=InsightProDB;User Id=seu_usuario;Password=sua_senha;"
+}
+Restaure as dependências:
+dotnet restore
+Compile o projeto:
+dotnet build
+Execute a API:
+dotnet run
+A API estará disponível em http://localhost:5000.
 
-2. *Funcionalidades*: São grupos de trabalho que detalham o que será desenvolvido dentro dos épicos. Exemplos de funcionalidades:
-   - Comparação de Produtos Baseada em Feedback
-   - Captura de Reclamações em Sites e YouTube
-   - Processamento de Reclamações Utilizando IA
-   - Armazenamento de Reclamações no Banco de Dados
+##Vantagens Competitivas
+Atualização em Tempo Real: Dados sempre atualizados com web scraping.
+Automatização Completa: Redução de esforço manual e eficiência.
+Escalabilidade e Flexibilidade: Arquitetura modular e uso da nuvem.
+Personalização de Insights: Relatórios customizados para cada cliente.
 
-3. *Itens de Entrega (PBIs)*: São as tarefas específicas que compõem as funcionalidades, como:
-   - Armazenar Reclamações no Banco de Dados
-   - Captura de Reviews do YouTube
-   - Processar Comentários com IA.
+Integrantes
+Rm 98660 - Leonardo Valentim de Souza
 
-## Funcionalidades Detalhadas
+RM 97714 - João Victor Leite Firmino
 
-O InsightPro oferece uma série de funcionalidades avançadas que tornam sua operação eficaz e adaptável às necessidades das empresas:
+Rm 99618 - Gustavo dos Santos Correa
 
-- Coleta Automática de Dados: O web scraper coleta avaliações e reclamações de produtos diretamente de plataformas de e-commerce, YouTube e sites de review. Esses dados são inseridos automaticamente em um banco de dados centralizado, mantendo as informações sempre atualizadas.
-  
-- Análise Avançada com IA: Utilizando algoritmos de IA generativa, o InsightPro processa grandes volumes de dados, identificando padrões ocultos e gerando relatórios que auxiliam na otimização de produtos. Os relatórios destacam pontos fortes, áreas de melhoria e fornecem recomendações baseadas em dados.
+RM 551201 - Lucas Cazzaro
 
-- Interface de Usuário Interativa: Com a integração de *Thymeleaf* e o padrão *MVC*, a plataforma oferece uma interface moderna e interativa para os usuários. A interface facilita a visualização e a análise de avaliações e comentários, proporcionando uma experiência de usuário rica e intuitiva.
-
-- Relatórios Customizados: A partir da análise dos dados coletados, o InsightPro gera relatórios customizados, permitindo às empresas identificar tendências e ajustar suas estratégias com base no feedback real dos consumidores.
-
-## Projeto Relacionado: Solução em Nuvem com API Java
-
-Além do InsightPro, a equipe desenvolveu uma solução em nuvem hospedada na Azure, que complementa o projeto. Esta solução utiliza uma *API em Java* conectada a um banco de dados SQL Server e oferece as seguintes funcionalidades:
-
-- Funcionalidades CRUD: Implementação de operações para *Criar, Ler, Atualizar e Excluir* dados de avaliações e produtos.
-- Integração com IA: A solução também utiliza inteligência artificial para processar feedbacks e gerar insights que ajudam a melhorar a competitividade dos produtos no mercado.
-- Escalabilidade em Nuvem: Utilizando os recursos da Azure, a solução é totalmente escalável, aproveitando serviços como *Azure Blob Storage, **Azure Cognitive Services* e *Azure Machine Learning* para garantir alta disponibilidade e flexibilidade no processamento de grandes volumes de dados.
-
-## Vantagens Competitivas
-
-- Atualização em Tempo Real: O uso de web scraping garante que as avaliações sejam coletadas e analisadas em tempo real, oferecendo insights sempre atualizados.
-- Automatização Completa: Desde a coleta de dados até a geração de relatórios, todo o processo é automatizado, reduzindo significativamente o esforço manual e aumentando a eficiência.
-- Escalabilidade e Flexibilidade: As soluções desenvolvidas são altamente escaláveis, permitindo que empresas de todos os tamanhos se beneficiem do sistema.
-- Personalização de Insights: Os relatórios são customizáveis, atendendo às necessidades específicas de cada empresa.
-
-## Tecnologias Utilizadas
-
-- Web Scraping: Coleta automatizada de dados.
-- React Native: Desenvolvimento de aplicação mobile responsiva.
-- Inteligência Artificial Generativa: Processamento de dados e geração de insights.
-- Java: Desenvolvimento da API backend.
-- Thymeleaf & MVC: Interface de usuário interativa.
-- Azure Cloud Services: Hospedagem e processamento em nuvem, utilizando serviços como *PaaS* e *SaaS*.
-
-## Objetivo Comum dos Projetos
-
-Tanto o InsightPro quanto a solução em nuvem compartilham o objetivo de empregar tecnologias de ponta, como inteligência artificial e coleta automatizada de dados, para fornecer insights valiosos sobre a aceitação e desempenho de produtos no mercado. Essas soluções ajudam as empresas a se adaptarem rapidamente às necessidades dos consumidores, aprimorando suas ofertas e, assim, garantindo uma vantagem competitiva sustentável.
-
-## Integrantes do Projeto
-
-- RM 98660 - Leonardo Valentim de Souza
-- RM 97714 - João Victor Leite Firmino
-- RM 99618 - Gustavo dos Santos Correa
-- RM 551201 - Lucas Cazzaro
-- RM 99219 - Ronaldo Riyudi Noda
+RM 99219 - Ronaldo Riyudi Noda
