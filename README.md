@@ -1,7 +1,5 @@
 ## InsightPro - Plataforma de Coleta e Análise de Avaliações com IA
 
----
-
 ## Descrição Geral do Projeto
 
 O InsightPro é uma plataforma inovadora para coleta, análise e geração de relatórios de avaliações de produtos utilizando técnicas avançadas de web scraping e inteligência artificial generativa. Desenvolvido para auxiliar empresas na obtenção de insights estratégicos, o InsightPro oferece uma visão profunda baseada no feedback de consumidores em plataformas de e-commerce.
